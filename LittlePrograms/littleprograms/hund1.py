@@ -1,6 +1,7 @@
 class Hund: # Namen mit CamelCase (Bsp. HundMitKatze)
     species = "Canis lupus familiaris" # Klassenattribut (oder auch statisches Attribut genannt)
 
+
     # init Methode wird aufgerufen wenn neues Objekt erzeugt wird
     def __init__(self, n: str, a: int):
         self.name = n # Parameter n wird auf Instanzattribut name gespeichert (Jedes Objekt/Instanz hat eigene Version davon)
@@ -48,8 +49,8 @@ if __name__ == '__main__':
 
     # was passiert wenn wir das nur LESEND oben ignorieren?
     # (das sollte man nicht machen)
-    #lassie.species = "Kaetzchen" # wir fügen dadurch dem lassie Objekt ein neues Instanzattribut hinzu
-    #print(lassie.__dict__)
+    lassie.species = "Kaetzchen" # wir fügen dadurch dem lassie Objekt ein neues Instanzattribut hinzu
+    print(lassie.__dict__)
 
     # Take home message: Auf Klassenattribute immer über Klassennamen zugreifen (so bekannt)
     # Instanzattribute über Instanz zugreifen
