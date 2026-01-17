@@ -2,6 +2,15 @@ class Hund: # Namen mit CamelCase (Bsp. HundMitKatze)
     species = "Canis lupus familiaris" # Klassenattribut (oder auch statisches Attribut genannt)
     anzahl_hunde = 0 # Zählen wie viele Hundeobjekte es gibt
 
+    @property
+    def color(self):
+        return self.__color
+
+    @color.setter
+    def color(self, value):
+        if value == "black" or value == "white" or value == "brown" or value == "gray":
+            self.__color = value
+
     # Jeder Hund hat eine Chip Nr - diese soll im Nachhinein nicht mehr verändert werden können
     # Machen ein property ohne setter - damit wird die Zuweisung verhindert
     @property
@@ -33,11 +42,16 @@ class Hund: # Namen mit CamelCase (Bsp. HundMitKatze)
         # wir müssen auf die private Variable zugreifen, da es ja keine set Methode gibt
         self.__chip_nr = c # Jeder Hund erhält eindeutige chip nummer
 
+        self.__color = "white"
+
         Hund.anzahl_hunde = Hund.anzahl_hunde + 1
         # hier könnten wir andere Methoden aufrufen die sehr komplizierte Sacheb machen
 
     def gib_laut(self, text:str):
         print(f'{self.name} bellt ganz laut {text}')
+
+    def mach_kunststueck(self, anzahl: int):
+        print(f'{self.name} hüpft {anzahl} mal')
 
     @classmethod # Bezieht sich auf Methode/Funktion/Klasse darunter - Decorator
     def print_anzahl_hunde(cls):
@@ -69,12 +83,23 @@ class Corgi(Hund):
     def gib_laut(self, text:str):
         print(f'{self.name} besitzt {self.iq} Punkte und bellt etwas weniger laut und rücksichtsvoll {text}')
 
+    def mach_kunststueck(self, anzahl: int):
+        super().mach_kunststueck(anzahl) # rufen die Implementation der Methode der Basisklasse auf
+        print(f'{self.name} hüpft zusätzlich noch einmal')
 
 
 if __name__ == '__main__':
     rex = Hund("Kommissar Rex", 14, "ABC1234")
     lassie = Hund("Lassie", 12, "XYZ2343434")
+    rex.mach_kunststueck(3)
+
     c = Corgi("Cheddar", 12, "99", 150)
     c.gib_laut("Achtung achtung!")
+    c.mach_kunststueck(3)
+
+    c.color = "brwwwown"
+
+    x = 3
+
     print(c)
 
